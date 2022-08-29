@@ -13,7 +13,6 @@ const Directory = (props) => {
             })}
         </div>
     );
-
 }
 
 export default Directory;
