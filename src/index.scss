@@ -3,6 +3,11 @@ body {
   font-family: 'Rubik',sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(
+    to left,
+    rgb(249, 72, 146) 0%,
+    rgb(137, 207, 253) 100%
+  );
 }
 
 code {
