@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import FormInput from '../form-input/form-input.component';
 import Button from '../button/button.component.jsx';
+import { UserContext } from '../contexts/user.context';
 import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth, signInWithGooglePopup, signInAuthUserWithEmailAndPassword } from '../utils/firebase/firebase.utils';
 import './sign-in-form.styles.scss';
 
@@ -14,6 +15,8 @@ const SignInForm = () => {
     const [formFields, setFormFields] = useState(defaultFormFields);
     const { email, password } = formFields;
 
+    const { setCurrentUser } = useContext(UserContext);
+
     const resetFormFields = () => {
         setFormFields(defaultFormFields);
     };
@@ -23,9 +26,15 @@ const SignInForm = () => {
         event.preventDefault();
 
         try {
-            const response = await signInAuthUserWithEmailAndPassword(email, password);
+            //destructured to capture the user Object inside the return
+            const {user} = await signInAuthUserWithEmailAndPassword(email, password);
             //we see that we get our user Object and access token if there's a validated user
-            console.log(response);
+            console.log(user);
+            
+            //uses the state setter function we got from useContext to set the current state of
+            //currentUser which is also available to us from useContext
+            setCurrentUser(user);
+
             resetFormFields();
         } catch (error) {
             if(error.code==="auth/wrong-password"){
@@ -45,6 +54,7 @@ const SignInForm = () => {
 
     const signInWithGoogle = async () => {
         const { user } = await signInWithGooglePopup();
+        setCurrentUser(user);
         await createUserDocumentFromAuth(user);
     }
 
