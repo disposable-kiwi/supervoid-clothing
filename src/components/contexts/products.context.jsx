@@ -1,8 +1,10 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import PRODUCTS from '../../shop-data.json';
 
+//this should always be an Object with the keys representing the states you are keeping track of along with their initial values
 export const ProductsContext = createContext({
-    products:[]
+    products:[],
+    setProducts:()=>{}
 });
 
 export const ProductsProvider = ({children})=>{

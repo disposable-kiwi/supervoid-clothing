@@ -2,15 +2,19 @@ import { Fragment, useEffect, useContext } from "react";
 import { UserContext } from "../../contexts/user.context";
 import { Outlet, Link } from "react-router-dom";
 import { AppBar } from "@mui/material";
+import CartIcon from "../../cart-icon/cart-icon.component";
+import CartDropDown from "../../cart-dropdown/cart-dropdown.component";
 import { ReactComponent as CrwnLogo } from '../../../assets/crown.svg';
 import { ReactComponent as VoidLogo } from '../../../assets/supervoid-logo.svg';
 import './navigation.styles.scss';
 import ResponsiveAppBar from "./appbar.component";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
+import { CartContext } from "../../contexts/cart.context";
 
 const Navigation = (props) => {
 
     const { currentUser, setCurrentUser } = useContext(UserContext);
+    const { isCartOpen, setIsCartOpen } = useContext(CartContext);
 
     const signOutHandler = async () =>{
         await signOutUser();
@@ -37,8 +41,9 @@ const Navigation = (props) => {
                             </Link>
                         )
                     }
-
+                    <CartIcon />
                 </div>
+                {isCartOpen && <CartDropDown />}
             </div>
             <Outlet />
         </Fragment>
