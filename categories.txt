@@ -1,0 +1,39 @@
+Helemts:
+- Default
+- Mohawk/Spartan
+- Cat Ears
+- Cyberpunk
+- Vintage 50's
+- Inverted Black and White/Sleek
+
+Gloves:
+- Default
+- Night Sky and Stars (Galaxy)
+- Geometric Sharp Edges
+- Cats
+- Transparent Fingerless
+- Leopard Print
+
+Torso:
+- Default
+- Shoulder Sling Design, Opposite side Shoulder to side 
+- Spiked Pads, Pointy, Metal Design 
+- Sleek Chrome padding on Arm guards
+- Faux Tuxedo
+- Cowboy
+
+Pants
+- Default
+- Stripes
+- Bell-Bottom
+- Padded
+- Skinny Denim
+- Yoga Pants
+
+Boots
+- Default
+- Doc Mertens
+- Skater
+- Transparent Toes
+- Cowboy Boots Faux
+- Hermes (shoes with heel wings)
