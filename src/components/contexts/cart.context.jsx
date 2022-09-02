@@ -1,4 +1,4 @@
-import {createContext, useState} from 'react';
+import {createContext, useEffect, useState} from 'react';
 
 const addCartItem = (cartItems, productToAdd)=>{
     const existingCartItem = cartItems.find((cartItem)=>{
@@ -16,19 +16,31 @@ export const CartContext = createContext({
     isCartOpen: false,
     setIsCartOpen:()=>{},
     cartItems:[],
-    addItemToCart: ()=>{}
+    addItemToCart: ()=>{},
+    cartCount:0
 });
 
 export const CartProvider = ({children})=>{
     const[isCartOpen, setIsCartOpen] = useState(false);
     const[cartItems,setCartItems] = useState([]);
+    const[cartCount, setCartCount] = useState(0);
+
+    //will only reset the state of cartCount if the state of cartItems ever change and this WILL change
+    //only when we click "Add to Cart" on the product-card child Component
+    useEffect(()=>{
+        const newCartCount = cartItems.reduce((total, cartItem)=>{
+                return total+cartItem.quantity;
+        },0);
+
+        setCartCount(newCartCount);
+    },[cartItems]);
 
     const addItemToCart = (productToAdd)=>{
         console.log(cartItems, "1");
         setCartItems(addCartItem(cartItems, productToAdd));
     }
 
-    const value = {isCartOpen, setIsCartOpen, addItemToCart, cartItems};
+    const value = {isCartOpen, setIsCartOpen, addItemToCart, cartItems, cartCount};
 
     return(
         <CartContext.Provider value={value}>{children}</CartContext.Provider>
