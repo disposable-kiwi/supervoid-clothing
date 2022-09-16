@@ -1,4 +1,4 @@
-Helemts:
+Helmets:
 - Default
 - Mohawk/Spartan
 - Cat Ears
